@@ -1,0 +1,33 @@
+import java.util.Arrays;
+
+public class AnagramChecker {
+    public static int countAnagrams(String target, String[] words) {
+        int count = 0;
+        String targetSorted = sortString(target);
+
+        for (String word : words) {
+            String wordSorted = sortString(word.replaceAll("\\s", "").toLowerCase());
+
+            if (wordSorted.equals(targetSorted)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    // Helper method to sort the characters in a string
+    private static String sortString(String str) {
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);
+    }
+
+    public static void main(String[] args) {
+        String target = "kosi";
+        String[] words = {"kois", "osik", "kosi", "okis", "isko"};
+
+        int count = countAnagrams(target, words);
+        System.out.println("Number of anagrams: " + count);
+    }
+}
